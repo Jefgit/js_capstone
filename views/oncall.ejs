@@ -4,9 +4,33 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Voize-Connected</title>
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
 </head>
 <body>
-    
+    <header><h1>Voize</h1></header>
+    <section>
+        <div id="container">
+            <video src="" id="gum" playsinline autoplay muted></video>
+           <div>
+                <button id="start">Start Camera</button>
+                <button id="record" disabled>Record</button>
+                <button id="play" disabled>Play</button>
+                <button id="download" disabled>Download</button>
+            </div>
+            <div>
+                <h4>Media Stream Constraints options</h4>
+                <p>
+                  Echo cancellation: <input type="checkbox" id="echoCancellation" />
+                </p>
+              </div>
+         
+              <div>
+                <span id="errorMsg"></span>
+              </div>
+              <video id="recorded" playsinline loop></video>
+        </div>
+    </section>
 </body>
+<script src="scripts/func.js"></script>
 </html>

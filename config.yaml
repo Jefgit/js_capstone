@@ -1,0 +1,5 @@
+session:
+  secret: user
+  resave: false
+  saveUninitialized: true
+  maxAge: 60000

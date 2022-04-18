@@ -1,0 +1,44 @@
+*{
+    margin: 0px;
+    border: 0px;
+    font-family: Circular Std Medium;
+}
+body{
+    text-align: center;
+}
+header{
+    background-color: aqua;
+}
+h1{
+    font-size: 70px;
+    margin-right: 1100px;
+}
+#wrapper{
+    background-image: url(../images/bg.gif);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 657px;
+}
+#form_room{
+    width: 500px;
+    margin: 150px auto 0 auto;
+}
+label{
+    color: white;
+    font-size: 30px;
+}
+#room_id{
+    width: 300px;
+    height: 50px;
+    font-size: 30px;
+    border: 1px solid black;
+}
+#connect{
+    height: 50px;
+    font-size: 30px;
+    margin: 20px 0px 0px 120px;
+}
+#gum{
+    margin: 0 auto 0 auto;
+}
