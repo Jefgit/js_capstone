@@ -4,7 +4,13 @@ let Voize = class{
     }
 
     onCall(req, res){
-        res.render('oncall');
+        res.render('index');
+    }
+
+    upload(req, res){
+        if(req.files){
+            console.log(req.files);
+        }
     }
 }
 

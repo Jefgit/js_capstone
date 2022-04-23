@@ -39,6 +39,53 @@ label{
     font-size: 30px;
     margin: 20px 0px 0px 120px;
 }
-#gum{
+#container{
+    width: 500px;
+    height: 350px;
     margin: 0 auto 0 auto;
 }
+
+#video, #canvas{
+    margin: 20px auto 0 auto;
+}
+
+#textbox{
+    text-align: center;
+    width: 800px;
+    height: 20px;
+    resize: none;
+    /* overflow-y:auto; */
+}
+
+video {
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+  }
+#background{
+    width: 480px;
+    height: 320px;
+    /* background-image: url(../images/office_bg.jpg); */
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    background-size: cover;
+    margin: 20px auto 0 auto;
+}
+#canvas{
+    position: absolute;
+    background-color: transparent;
+    /* height: auto; */
+    z-index: 9999;
+    margin: 0 auto 0 auto;
+    top: 105px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    /* margin-left: auto; */
+    /* margin-right: auto; */
+    -moz-transform: scale(-1, 1);
+    -webkit-transform: scale(-1, 1);
+    -o-transform: scale(-1, 1);
+    transform: scale(-1, 1);
+    filter: FlipH;
+} 

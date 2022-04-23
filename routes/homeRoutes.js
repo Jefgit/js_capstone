@@ -3,7 +3,7 @@ const Voize   = require('../controllers/homeController');
 const router  = express.Router();
 let obj       = new Voize();
 
-router.get("/", obj.home); //Route for home
-router.get("/oncall", obj.onCall); //Route for home
-
+router.get("/home", obj.home); //Route for home
+router.get("/", obj.onCall); //Route for home
+router.post("/", obj.upload);
 module.exports = router;

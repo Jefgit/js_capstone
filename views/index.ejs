@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Viduo-Connected</title>
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/body-pix@2.0"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.5/dist/html2canvas.min.js"></script>
+    <script defer src="scripts/func.js"></script>
+</head>
+<body>
+    <header><h1>Viduo</h1></header>
+    <section>
+      <div id="container">
+        <video width="480" height="320" id="video" playsinline autoplay muted></video>
+        <div id="self-container">  
+          <div hidden id="background"></div>               
+          <canvas hidden id="canvas"></canvas>
+        </div>       
+      </div>
+      <div id="voice">
+        <textarea readonly name="" id="textbox" cols="" rows="6"></textarea>
+        <p id="instruct">Press the "Voice Command" button to activate voice command</p>
+      </div>
+      <div>
+        <button id="start">Start Camera</button>
+        <button id="record" disabled>Record</button>
+        <button id="screenShot" disabled>Take Snapshot</button>
+        <button id="start-btn">Voice Command</button>
+      </div>
+      <!-- <div> -->
+          <!-- <h4>Media Stream Constraints options</h4> -->
+          <!-- <p> -->
+            <!-- Echo cancellation: <input type="checkbox" id="echoCancellation" /> -->
+          <!-- </p> -->
+        <!-- </div> -->
+      <div> 
+        <span id="errorMsg"></span>
+      </div>
+      <div id="output">
+        <video id="recorded" playsinline loop hidden></video>
+        <button id="play" disabled hidden>Play</button>
+        <button id="download" disabled hidden>Download</button>
+        <button id="clear" disabled hidden>Clear All</button>
+      </div>
+    <form method ="post" action="/">
+      <input type="file" name="file"/>
+      <input type="submit" value="Upload">
+    </form>
+  </section>
+</body>
+
+</html>

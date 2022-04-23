@@ -4,13 +4,16 @@ const yaml = require('js-yaml');
 const raw = fs.readFileSync('config.yaml');
 const data = yaml.load(raw);
 
+
 const express      = require("express");
+const app          = express();
+const upload       = require('express-fileupload');
 const homeRoutes   = require('./routes/homeRoutes');
 const session      = require("express-session");
 const bodyParser   = require('body-parser');
 const urlencodedParser = bodyParser.urlencoded({extended: false});
-const app          = express();
 const { check, validationResult} = require('express-validator');
+const { render } = require('ejs');
 
 app.use(session({
     secret:  data.session.secret,
@@ -23,11 +26,24 @@ app.use(express.static(__dirname + "/assets"));
 
 app.use(bodyParser.urlencoded({extended: true}));
 
+app.use(upload())
+
 app.set('views', __dirname + '/views'); 
 
 app.set('view engine', 'ejs');
 
 app.use(homeRoutes);
+
+// app.get('/', (req, res) =>{
+//     render
+// })
+
+// app.post('/', (req, res) => {
+//     if(req.files) {
+//         console.log(req);
+//     }
+// })
+
 
 app.listen(8000, function(){
     console.log("listening on 8000");  
