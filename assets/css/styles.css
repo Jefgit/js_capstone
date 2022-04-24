@@ -5,14 +5,28 @@
 }
 body{
     text-align: center;
+    font-family: Circular Std Medium;
 }
 header{
     background-color: aqua;
+    font-family: Circular Std Medium;
+    height: 100px;
 }
-h1{
-    font-size: 70px;
-    margin-right: 1100px;
+#logo{
+    margin-right: 760px;
+    display: inline-block;
 }
+
+#watch, #add_bg, #instructions{
+    background-color: transparent;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 15px 0 15px;
+}
+#add_bg:hover {color: white;}
+#instructions:hover {color: white;}
+#watch:hover {color: white !important;}
+
 #wrapper{
     background-image: url(../images/bg.gif);
     background-repeat: no-repeat;
@@ -40,21 +54,57 @@ label{
     margin: 20px 0px 0px 120px;
 }
 #container{
-    width: 500px;
-    height: 350px;
-    margin: 0 auto 0 auto;
+    width: 480px;
+    height: 320px;
+    background-image: url(../images/clapper.webp);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size:contain;
+    margin: 20px auto 0 auto;
+    /* border: 12px outset #e0e0e0; */
 }
 
 #video, #canvas{
-    margin: 20px auto 0 auto;
+    margin: 0px auto 0 auto;
+}
+#voice_command{
+    margin: 0 auto 0 auto;
+}
+#command{
+    font-size: 25px;
+    color: black;
+    margin-left: 3px;
+}
+#voice{
+    margin-top: 10px;
+}
+#textbox{
+    text-align: left;
+    width: 450px;
+    height: 35px;
+    border: 3px solid gray;
+    border-radius: 2px;
+    display: inline-block;
+    /* overflow-y:auto; */
 }
 
-#textbox{
-    text-align: center;
-    width: 800px;
-    height: 20px;
-    resize: none;
-    /* overflow-y:auto; */
+#start-btn{
+    vertical-align: middle;
+    background-color: transparent;
+}
+
+#mic{
+    font-size: 30px;
+}
+
+#mic:hover {color: red;}
+
+#mic2{
+    font-size: 15px;
+}
+
+#screenShot{
+    background-color: transparent;
 }
 
 video {
@@ -64,28 +114,247 @@ video {
 #background{
     width: 480px;
     height: 320px;
-    /* background-image: url(../images/office_bg.jpg); */
     background-position: center center;
     background-repeat: no-repeat;
     background-color: transparent;
     background-size: cover;
-    margin: 20px auto 0 auto;
+    margin: 0px auto 0 auto;
 }
 #canvas{
     position: absolute;
     background-color: transparent;
-    /* height: auto; */
-    z-index: 9999;
-    margin: 0 auto 0 auto;
-    top: 105px;
+    z-index: 9998;
+    top: 120px;
     bottom: 0;
     left: 0;
     right: 0;
-    /* margin-left: auto; */
-    /* margin-right: auto; */
     -moz-transform: scale(-1, 1);
     -webkit-transform: scale(-1, 1);
     -o-transform: scale(-1, 1);
     transform: scale(-1, 1);
     filter: FlipH;
 } 
+
+#output{
+    /* width: 330px; */
+    height: 300px;
+    /* position: absolute; */
+    /* display: none; */
+    /* top: 100px; */
+    /* bottom: 0; */
+    /* left: 900px; */
+    /* right: 0; */
+}
+#speech{
+   margin-left: 10px;
+}
+#object{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.fa, .fa-hexagon-image{
+    font-size: 50px;
+}
+
+.form-container{
+    display: inline-block;
+    width: 300px;
+}
+
+h4, ul{
+    text-align: left;
+}
+
+/* Button used to open the contact form - fixed at the bottom of the page */
+.open-button {
+    background-color: #555;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    opacity: 0.8;
+    position: fixed;
+    bottom: 23px;
+    right: 28px;
+    width: 280px;
+  }
+  
+  /* Add styles to the form container */
+  .form-container {
+    max-width: 300px;
+    padding: 10px;
+    background-color: white;
+  }
+
+  /* The popup form - hidden by default */
+.form-popup {
+    display: none;
+    position: fixed;
+    height: 400px;
+    top: 100px;
+    right: 15px;
+    border: 3px solid #f1f1f1;
+    /* z-index: 9999; */
+  }
+
+  /* Set a style for the submit/login button */
+.form-container .btn {
+    background-color: #04AA6D;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom:10px;
+    opacity: 0.8;
+  }
+  
+  /* Add a red background color to the cancel button */
+  .form-container .cancel {
+    background-color: red;
+  }
+  
+  /* Add some hover effects to buttons */
+  .form-container .btn:hover, .open-button:hover {
+    opacity: 1;
+  }
+
+  #download{
+      background-color: blue;
+  }
+  #file{
+    display: none;
+  }
+
+  #link_upload{
+      width: 300px;
+      display: inline-block;
+      margin-top: 10px;
+  }
+
+  #bg_text{
+      width: 200px;
+      display: inline-block;
+  }
+
+  #icon_upload{
+    display: inline-block;
+  }
+
+  #message_error{
+      color: red;
+  }
+
+  #message_success{
+      color: green;
+  }
+
+  #recorded{
+      width: 280px;
+      border: 3px solid gainsboro;
+  }
+
+  #myModal{
+      z-index: 9999;
+  }
+
+    /* Camera Toggle switch button */
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
+  
+  .switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: #2196F3;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
+
+
+  /* Recording button */
+  #record {
+	width: 35px;
+	height: 35px;
+	font-size: 0;
+	background-color: red;
+	border: 0;
+	border-radius: 35px;
+	margin: 18px 70px 18px 70px;
+	outline: none;
+}
+
+.notRec{
+	background-color: darkred;
+}
+
+.Rec{
+	animation-name: pulse;
+	animation-duration: 1.5s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+}
+
+@keyframes pulse{
+	0%{
+		box-shadow: 0px 0px 5px 0px rgba(173,0,0,.3);
+	}
+	65%{
+		box-shadow: 0px 0px 5px 13px rgba(173,0,0,.3);
+	}
+	90%{
+		box-shadow: 0px 0px 5px 13px rgba(173,0,0,0);
+	}
+}
