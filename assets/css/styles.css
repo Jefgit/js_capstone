@@ -3,15 +3,18 @@
     border: 0px;
     font-family: Circular Std Medium;
 }
+
 body{
     text-align: center;
     font-family: Circular Std Medium;
 }
+
 header{
     background-color: aqua;
     font-family: Circular Std Medium;
     height: 100px;
 }
+
 #logo{
     margin-right: 760px;
     display: inline-block;
@@ -23,9 +26,18 @@ header{
     vertical-align: middle;
     margin: 0 15px 0 15px;
 }
-#add_bg:hover {color: white;}
-#instructions:hover {color: white;}
-#watch:hover {color: white !important;}
+
+#add_bg:hover {
+    color: white;
+}
+
+#instructions:hover {
+    color: white;
+}
+
+#watch:hover {
+    color: white !important;
+}
 
 #wrapper{
     background-image: url(../images/bg.gif);
@@ -34,25 +46,30 @@ header{
     width: 100%;
     height: 657px;
 }
+
 #form_room{
     width: 500px;
     margin: 150px auto 0 auto;
 }
+
 label{
     color: white;
     font-size: 30px;
 }
+
 #room_id{
     width: 300px;
     height: 50px;
     font-size: 30px;
     border: 1px solid black;
 }
+
 #connect{
     height: 50px;
     font-size: 30px;
     margin: 20px 0px 0px 120px;
 }
+
 #container{
     width: 480px;
     height: 320px;
@@ -67,37 +84,44 @@ label{
 #video, #canvas{
     margin: 0px auto 0 auto;
 }
+
 #voice_command{
     margin: 0 auto 0 auto;
 }
+
 #command{
     font-size: 25px;
     color: black;
     margin-left: 3px;
 }
+
 #voice{
     margin-top: 10px;
 }
+
 #textbox{
     text-align: left;
-    width: 450px;
+    width: 480px;
     height: 35px;
     border: 3px solid gray;
     border-radius: 2px;
     display: inline-block;
-    /* overflow-y:auto; */
 }
 
 #start-btn{
+    position: absolute;
+    right: 445px;
     vertical-align: middle;
     background-color: transparent;
 }
 
 #mic{
-    font-size: 30px;
+    font-size: 29px;
 }
 
-#mic:hover {color: red;}
+#mic:hover {
+    color: red;
+}
 
 #mic2{
     font-size: 15px;
@@ -111,6 +135,7 @@ video {
     -webkit-transform: scaleX(-1);
     transform: scaleX(-1);
   }
+
 #background{
     width: 480px;
     height: 320px;
@@ -120,6 +145,7 @@ video {
     background-size: cover;
     margin: 0px auto 0 auto;
 }
+
 #canvas{
     position: absolute;
     background-color: transparent;
@@ -136,18 +162,13 @@ video {
 } 
 
 #output{
-    /* width: 330px; */
     height: 300px;
-    /* position: absolute; */
-    /* display: none; */
-    /* top: 100px; */
-    /* bottom: 0; */
-    /* left: 900px; */
-    /* right: 0; */
 }
+
 #speech{
    margin-left: 10px;
 }
+
 #object{
     position: absolute;
     top: 0;
@@ -181,14 +202,14 @@ h4, ul{
     bottom: 23px;
     right: 28px;
     width: 280px;
-  }
+}
   
-  /* Add styles to the form container */
-  .form-container {
+/* Add styles to the form container */
+.form-container {
     max-width: 300px;
     padding: 10px;
     background-color: white;
-  }
+}
 
   /* The popup form - hidden by default */
 .form-popup {
@@ -198,8 +219,7 @@ h4, ul{
     top: 100px;
     right: 15px;
     border: 3px solid #f1f1f1;
-    /* z-index: 9999; */
-  }
+}
 
   /* Set a style for the submit/login button */
 .form-container .btn {
@@ -211,72 +231,73 @@ h4, ul{
     width: 100%;
     margin-bottom:10px;
     opacity: 0.8;
-  }
+}
   
-  /* Add a red background color to the cancel button */
-  .form-container .cancel {
+/* Add a red background color to the cancel button */
+.form-container .cancel {
     background-color: red;
-  }
+}
   
-  /* Add some hover effects to buttons */
-  .form-container .btn:hover, .open-button:hover {
+/* Add some hover effects to buttons */
+.form-container .btn:hover, .open-button:hover {
     opacity: 1;
-  }
+}
 
-  #download{
-      background-color: blue;
-  }
-  #file{
+#download{
+    background-color: blue;
+}
+
+#file{
     display: none;
-  }
+}
 
-  #link_upload{
-      width: 300px;
-      display: inline-block;
-      margin-top: 10px;
-  }
-
-  #bg_text{
-      width: 200px;
-      display: inline-block;
-  }
-
-  #icon_upload{
+#link_upload{
+    width: 300px;
     display: inline-block;
-  }
+    margin-top: 10px;
+}
 
-  #message_error{
-      color: red;
-  }
+#bg_text{
+    width: 200px;
+    display: inline-block;
+}
 
-  #message_success{
-      color: green;
-  }
+#icon_upload{
+    display: inline-block;
+}
 
-  #recorded{
-      width: 280px;
-      border: 3px solid gainsboro;
-  }
+#message_error{
+    color: red;
+}
 
-  #myModal{
+#message_success{
+    color: green;
+}
+
+#recorded{
+    width: 280px;
+    border: 3px solid gainsboro;
+}
+
+#myModal{
       z-index: 9999;
-  }
+}
 
-    /* Camera Toggle switch button */
-  .switch {
+/* Camera Toggle switch button */
+.switch {
     position: relative;
     display: inline-block;
     width: 60px;
     height: 34px;
-  }
+}
   
-  .switch input { 
+.switch input { 
     opacity: 0;
     width: 0;
     height: 0;
-  }
+}
   
-  .slider {
+.slider {
     position: absolute;
     cursor: pointer;
     top: 0;
@@ -286,9 +307,9 @@ h4, ul{
     background-color: #ccc;
     -webkit-transition: .4s;
     transition: .4s;
-  }
+}
   
-  .slider:before {
+.slider:before {
     position: absolute;
     content: "";
     height: 26px;
@@ -298,34 +319,33 @@ h4, ul{
     background-color: white;
     -webkit-transition: .4s;
     transition: .4s;
-  }
+}
   
-  input:checked + .slider {
+ input:checked + .slider {
     background-color: #2196F3;
-  }
+}
   
-  input:focus + .slider {
+input:focus + .slider {
     box-shadow: 0 0 1px #2196F3;
-  }
+}
   
-  input:checked + .slider:before {
+input:checked + .slider:before {
     -webkit-transform: translateX(26px);
     -ms-transform: translateX(26px);
     transform: translateX(26px);
-  }
+}
   
-  /* Rounded sliders */
-  .slider.round {
+/* Rounded sliders */
+.slider.round {
     border-radius: 34px;
-  }
+}
   
-  .slider.round:before {
+.slider.round:before {
     border-radius: 50%;
-  }
+}
 
-
-  /* Recording button */
-  #record {
+/* Recording button */
+#record {
 	width: 35px;
 	height: 35px;
 	font-size: 0;
@@ -335,7 +355,7 @@ h4, ul{
 	margin: 18px 70px 18px 70px;
 	outline: none;
 }
-
+    
 .notRec{
 	background-color: darkred;
 }

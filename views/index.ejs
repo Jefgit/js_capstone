@@ -17,61 +17,58 @@
     <script defer src="scripts/func.js"></script>
 </head>
 <body>
-    <header>
-      <img id="logo" src="images/logov1.png" alt="">
-      
-      <button id="watch" title="Watch recorded video."><i class="fa fa-film" aria-hidden="true"></i></button>
-      <button id="add_bg" title="Upload camera background filter."><i class="fa fa-picture-o" aria-hidden="true"></i></button>
-      <button id="instructions" type="button" data-toggle="modal" data-target="#myModal" title="Guide"><i class="fa fa-question-circle" aria-hidden="true"></i></button>
-    </header>
-    <section>
-      <div id="container">
-        <video width="480" height="320" id="video" playsinline autoplay muted ></video>
-        <div id="self-container">  
-          <div hidden id="background"></div>          
-          <canvas hidden id="canvas"></canvas>
-        </div>       
-      </div>
-      <div id="voice">
-        <div id="voice_command">
-          <p id="textbox"><i id="command" class="fa fa-commenting" aria-hidden="true" title="Hello there, I'am Vidu your AI assistant!"></i><span id="speech"></span></p> 
-          <button id="start-btn" title="Click me to activate voice command."><i id="mic" class="fa fa-microphone" aria-hidden="true"></i></button>
-        </div>
-        <p id="instruct">Press the <i id="mic2" class="fa fa-microphone" aria-hidden="true"></i> button to activate voice command.</p>
-      </div>
-      <div>
-        <label class="switch">
-          <input id="checkbox" type="checkbox" >
-          <span class="slider round" title="Switch Camera On and Off."></span>
-        </label>
-        <button id="record" title="Record" disabled></button>
-        <button id="screenShot" disabled title="Click me to take a snapshot or say 'snap' on voice command."><i class="fa fa-camera-retro" aria-hidden="true"></i></button>
-      </div>
-      <div> 
-        <span id="errorMsg"></span>
-      </div>
-      <div class="form-popup" id="output" >
-        <div  class="form-container">
-        <video id="recorded" playsinline loop></video>
-        <button id="play" class="btn" disabled >Play</button>
-        <button id="download" class="btn" disabled >Download</button>
-      </div>
-      </div>
-      <div class="form-popup" id="myForm">
-        <form method ="POST" action="/" enctype="multipart/form-data" class="form-container">
-          <img id="image"  width="280px" height="200px"/>
-          <a id="link_upload" href="#"><i id="icon_upload" class="fa fa-upload"></i><p id="bg_text">Select background filter.</p></a>
-          <input accept="image/*" id="file" type="file" name="file" hidden />
-          <input type="submit" onchange="preview()" value="Upload" id="upload" class="btn">
-          <p id="message_error"><%= error%></p>
-          <p id="message_success"><%= message%></p>
-        </form>
-      </div>
-
-    <!-- Modal -->
-  <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
+  <header>
+    <img id="logo" src="images/logov1.png" alt="">
     
+    <button id="watch" title="Watch/download recorded video."><i class="fa fa-film" aria-hidden="true"></i></button>
+    <button id="add_bg" title="Upload camera background filter."><i class="fa fa-picture-o" aria-hidden="true"></i></button>
+    <button id="instructions" type="button" data-toggle="modal" data-target="#myModal" title="Guide"><i class="fa fa-question-circle" aria-hidden="true"></i></button>
+  </header>
+  <section>
+    <div id="container">
+      <video width="480" height="320" id="video" playsinline autoplay muted ></video>
+      <div id="self-container">  
+        <div hidden id="background"></div>          
+        <canvas hidden id="canvas"></canvas>
+      </div>       
+    </div>
+    <div id="voice">
+      <div id="voice_command">
+        <p id="textbox"><i id="command" class="fa fa-commenting" aria-hidden="true" title="Hello there, I'am Vidu your AI assistant!"></i><span id="speech"></span><button id="start-btn" title="Click me to activate voice command."><i id="mic" class="fa fa-microphone" aria-hidden="true"></i></button></p> 
+      </div>
+      <p id="instruct">Press the <i id="mic2" class="fa fa-microphone" aria-hidden="true"></i> button to activate voice command.</p>
+    </div>
+    <div>
+      <label class="switch">
+        <input id="checkbox" type="checkbox" >
+        <span class="slider round" title="Switch Camera On and Off."></span>
+      </label>
+      <button id="record" title="Record" disabled></button>
+      <button id="screenShot" disabled title="Click me to take a snapshot or say 'snap' on voice command."><i class="fa fa-camera-retro" aria-hidden="true"></i></button>
+    </div>
+    <div> 
+      <span id="errorMsg"></span>
+    </div>
+    <div class="form-popup" id="output" >
+      <div  class="form-container">
+      <video id="recorded" playsinline loop></video>
+      <button id="play" class="btn" disabled >Play</button>
+      <button id="download" class="btn" disabled >Download</button>
+    </div>
+    </div>
+    <div class="form-popup" id="myForm">
+      <form method ="POST" action="/" enctype="multipart/form-data" class="form-container">
+        <img id="image"  width="280px" height="200px"/>
+        <a id="link_upload" href="#"><i id="icon_upload" class="fa fa-upload"></i><p id="bg_text">Select background filter.</p></a>
+        <input accept="image/*" id="file" type="file" name="file" hidden />
+        <input type="submit" onchange="preview()" value="Upload" id="upload" class="btn">
+        <p id="message_error"><%= error%></p>
+        <p id="message_success"><%= message%></p>
+      </form>
+    </div>
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">   
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
@@ -80,8 +77,10 @@
         </div>
         <div class="modal-body">
           <ul>
-            <li>Change background filter voice commands format: background + <span><%= files%></span>.</li>
+            <li>Change background filter voice commands format: background + [keyword].</li>
+            <li><span>Available keywords: <%= files%></span>.</li>
             <li>Blur background command: "blur background"</li>
+            <li>Reset Background: "background"</li>
             <li>In uploading custom background filter rename the file with the following format: [voice command]_bg.jpg where the voice command is the text conversion of the command you want to use when changing background filter. </li>
           </ul>
         </div>
@@ -89,10 +88,9 @@
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
       </div>
-      
     </div>
   </div>
-  </section>
+</section>
 </body>
 
 </html>

@@ -1,9 +1,10 @@
-//for webrtc
-let mediaRecorder, recordedBlobs;
+let mediaRecorder;
+let recordedBlobs;
 let img_name;
 let img_exist;
 let is_recording;
-let displayVideo      = document.querySelector('video#video');
+
+const displayVideo    = document.getElementById('video');
 const checkbox        = document.getElementById('checkbox');
 const myForm          = document.getElementById('myForm');
 const file            = document.getElementById('file');
@@ -16,22 +17,15 @@ const videoElement    = document.getElementById('video');
 const canvas          = document.getElementById('canvas');
 const output          = document.getElementById('output');
 const background      = document.getElementById('background');
-const errorMsgElement = document.querySelector('span#errorMsg');
-const recordedVideo   = document.querySelector('video#recorded');
-const startButton     = document.querySelector('button#start');
-const recordButton    = document.querySelector('button#record');
-const playButton      = document.querySelector('button#play');
-const downloadButton  = document.querySelector('button#download');
-const snapButton      = document.querySelector('button#screenShot');
+const errorMsgElement = document.getElementById('errorMsg');
+const recordedVideo   = document.getElementById('recorded');
+const recordButton    = document.getElementById('record');
+const playButton      = document.getElementById('play');
+const downloadButton  = document.getElementById('download');
+const snapButton      = document.getElementById('screenShot');
+const ctxImg          = canvas.getContext('2d');
 
-const ctxImg = canvas.getContext('2d');
-
-file.onchange =  function(){
-  var src = URL.createObjectURL(this.files[0]);
-  image.src = src;
-}
-
-add_bg.addEventListener('click', async () => {
+add_bg.addEventListener('click', async () => { //add background event
   if(myForm.style.display == "block"){
     myForm.style.display = "none";
   }
@@ -41,54 +35,55 @@ add_bg.addEventListener('click', async () => {
 
 });
 
-watch.addEventListener('click', async () => {
+file.onchange =  function(){ //preview image to upload
+  var src = URL.createObjectURL(this.files[0]);
+  image.src = src;
+}
+
+watch.addEventListener('click', async () => { //Replay or download recorded video event
   if(output.style.display == "block"){
     output.style.display = "none";
+    console.log(recordedBlobs);
 
     if(recordedBlobs){
-    const superBuffer = new Blob(recordedBlobs, {type: 'video/webm'});
-    recordedVideo.src = null;
-    recordedVideo.srcObject = null;
-    recordedVideo.src = window.URL.createObjectURL(superBuffer);
-    try {
-      recordedVideo.stop();
-    } catch (error) {
-      console.log(error);
-    }
-    
+      const superBuffer = new Blob(recordedBlobs, {type: 'video/webm'});
+      recordedVideo.src = null;
+      recordedVideo.srcObject = null;
+      recordedVideo.src = window.URL.createObjectURL(superBuffer);   
     }
     
   }
   else{
-    const superBuffer = new Blob(recordedBlobs, {type: 'video/webm'});
-    recordedVideo.src = null;
-    recordedVideo.srcObject = null;
-    recordedVideo.src = window.URL.createObjectURL(superBuffer);
+    console.log(recordedBlobs);
+   if(recordedBlobs){
+      const superBuffer = new Blob(recordedBlobs, {type: 'video/webm'});
+      recordedVideo.src = null;
+      recordedVideo.srcObject = null;
+      recordedVideo.src = window.URL.createObjectURL(superBuffer);
+    }
     output.style.display = "block";
   }
 
 });
 
 icon_upload.addEventListener('click', async () => {
- file.click();
+  file.click();
 });
 
 checkbox.addEventListener('change', async () => {
   if(checkbox.checked){
     recordButton.disabled = false;
     snapButton.disabled = false;
-     // startButton.disabled = true;
-        // const hasEchoCancellation = document.querySelector('#echoCancellation').checked; 
-        const constraints = {
-          audio: {
-            // echoCancellation: {exact: hasEchoCancellation}
-          },
-          video: {
-            width: 480, height: 320  //set video screen dimension
-          }
-        };
-        // console.log('Using media constraints:', constraints);
-      await init(constraints);
+    const constraints = {
+      audio: {
+        // echoCancellation: {exact: hasEchoCancellation}
+      },
+      video: {
+        width: 480, height: 320  //set video screen dimension
+      }
+    };
+      // console.log('Using media constraints:', constraints);
+    await init(constraints);
 
   }
   else{
@@ -96,43 +91,16 @@ checkbox.addEventListener('change', async () => {
       track.stop();
       displayVideo.srcObject = null;
     });
-    // stream.getTracks().forEach(track => track.stop())
-    // startButton.textContent = 'Start Camera';
-     recordButton.disabled = true;
-    snapButton.disabled = true;
 
+    background.hidden = true;
+    displayVideo.hidden = false;
+    canvas.hidden = true;
+
+     recordButton.disabled = true;
+     snapButton.disabled = true;
   }
   
 });
-//when start button camera is clicked open camera view
-// startButton.addEventListener('click', async () => {
-
-//   if (startButton.textContent === 'Close Camera') {
-//     window.stream.getTracks().forEach(function(track) {
-//       track.stop();
-//       displayVideo.srcObject = null;
-//     });
-//     // stream.getTracks().forEach(track => track.stop())
-//     startButton.textContent = 'Start Camera';
-//      recordButton.disabled = true;
-//     snapButton.disabled = true;
-//   }
-//   else{
-   
-//     // startButton.disabled = true;
-//         // const hasEchoCancellation = document.querySelector('#echoCancellation').checked; 
-//       const constraints = {
-//         audio: {
-//           // echoCancellation: {exact: hasEchoCancellation}
-//         },
-//         video: {
-//           width: 480, height: 320  //set video screen dimension
-//         }
-//       };
-//       // console.log('Using media constraints:', constraints);
-//     await init(constraints);
-//   }
-//   });
 
 async function init(constraints) {
     try {
@@ -146,29 +114,11 @@ async function init(constraints) {
 
 function handleSuccess(stream) {
   console.log('getUserMedia() got stream:', stream);
-    window.stream = stream;
-  
-  // const displayVideo = document.querySelector('video#display');
+  window.stream = stream;
   displayVideo.srcObject = stream;
-
-  // if (startButton.textContent === 'Close Camera') {
-  //   window.stream.getTracks().forEach(function(track) {
-  //     track.stop();
-  //     displayVideo.srcObject = null;
-  //   });
-  //   // stream.getTracks().forEach(track => track.stop())
-  //   startButton.textContent = 'Start Camera';
-  //    recordButton.disabled = true;
-  //   snapButton.disabled = true;
-  // }
-  // else{
-    recordButton.disabled = false;
-    snapButton.disabled = false;
-    // startButton.textContent = 'Close Camera';  
-    videoElement.play();
-  // }
+  snapButton.disabled = false;
+  videoElement.play();
 }
-
 
 function stopStream(stream) { //close camera
   stream.getTracks().forEach(function(track) {
@@ -188,20 +138,6 @@ snapButton.addEventListener('click', () => { //when Take Snapshot button is clic
   }
 })
 
-//when record button is clicked
-// recordButton.addEventListener('click', () => {
-//   if (recordButton.textContent === 'Record') {
-//     startRecording();
-//   } else {
-//     stopRecording();
-//     watch.style.color = "red";
-//     recordButton.textContent = 'Record';
-//     playButton.disabled = false;
-//     downloadButton.disabled = false;
-//     output.hidden = false;
-//   }
-// });
-
 $('#record').addClass("notRec");
 
 $('#record').click(function(){
@@ -216,7 +152,6 @@ $('#record').click(function(){
 
     stopRecording();
     watch.style.color = "red";
-    // recordButton.textContent = 'Record';
     is_recording = false;
     playButton.disabled = false;
     downloadButton.disabled = false;
@@ -237,7 +172,6 @@ function startRecording() {
   }
   
   console.log('Created MediaRecorder', mediaRecorder, 'with options', options);
-  // recordButton.textContent = 'Stop Recording';
   is_recording = true;
   playButton.disabled = true;
   downloadButton.disabled = true;
@@ -316,11 +250,6 @@ function stopRecording() {
 
 //for replaying recorded video
 playButton.addEventListener('click', () => {
-    // const superBuffer = new Blob(recordedBlobs, {type: 'video/webm'});
-    // recordedVideo.src = null;
-    // recordedVideo.srcObject = null;
-    // recordedVideo.src = window.URL.createObjectURL(superBuffer);
-    // recordedVideo.controls = true;
     recordedVideo.play();
 });
 
@@ -350,7 +279,6 @@ var recognition = new speechRecognition();
 var textbox = $("#speech");
 var instruction = $("#instruct");
 var content = "";
-// var stat = "";
 
 recognition.continuos = true;
 
@@ -359,12 +287,7 @@ recognition.onstart = () => {
 }
 
 recognition.onspeechend = () => {
-  // if(stat){
-  //   instruction.text(stat);
-  // }
-  // else{
     instruction.text("No Activity");
-  // }
 }
 
 recognition.onerror = () => {
@@ -382,57 +305,35 @@ recognition.onresult = (event) => {
   let words = textbox.text().split(' ');
   let path = "url('../images/backgrounds/"+words[1]+"_bg.jpg')";
 
-  // if(textbox.text() == "snap"){
-  //   if($('#video').is(":hidden")){
-  //     takeSnapshot();
-  //   }
-  //   else{
-  //     takeSnapshot()
-  //     .then(downloadPic);
-  //   }
-  // }
-  // else 
-  if(textbox.text() == "blur background"){
-    // stat = "Blurry background activated";
+  if(textbox.text() == "blur background"){// set blurry background
     background.hidden = true;
     displayVideo.hidden = true;
     canvas.hidden = false;
     loadBodyPix();
   }
   else if(words[0] == "background"){
-    // stat = "";
     checkImage("../images/backgrounds/"+words[1]+"_bg.jpg")
     .then((value) => {
       console.log(value);
       if(value){
-        // stat = "Background filter changed.";
         img_name = words[1];
-      console.log( img_name);
-      
-      background.style.backgroundImage = path;
-      background.hidden = false;
-      displayVideo.hidden = true;
-      canvas.hidden = false;
-      canvas.width = videoElement.width;
-      canvas.height = videoElement.height;
+        console.log( img_name);
+        background.style.backgroundImage = path;
+        background.hidden = false;
+        displayVideo.hidden = true;
+        canvas.hidden = false;
+        canvas.width = videoElement.width;
+        canvas.height = videoElement.height;
 
-      ctxImg.drawImage(videoElement, 0, 0);
-      removebackground();
+        ctxImg.drawImage(videoElement, 0, 0);
+        removebackground();
       }
       else{
-        // stat = "Background filter not available";
         background.hidden = true;
         displayVideo.hidden = false;
         canvas.hidden = true;
       }
     });
-  }
-  else if(textbox.text() == "object"){
-    canvas.hidden = false;
-    canvas.width = 550;
-    canvas.height = 500;
-    displayVideo.hidden = true;
-      insertObject();
   }
   else{
     background.hidden = true;
@@ -501,14 +402,12 @@ async function removebackground() {
   const ctx = canvas.getContext('2d');
 
   while (textbox.text() == "background "+img_name) {
-    // stat = "background "+img_name+" activated";
-
     // Loading the model
     const net = await bodyPix.load({
       multiplier: 0.75,
       stride: 32,
       quantBytes: 4
-});
+    });
   
     // Segmentation
     const { data:map } = await net.segmentPerson(videoElement, {
@@ -517,27 +416,17 @@ async function removebackground() {
       segmentationThreshold: 0.6
     });
   
-  ctx.drawImage(videoElement, 0, 0, videoElement.width, videoElement.height);
-  var imageData = ctx.getImageData(0,0, videoElement.width, videoElement.height);
-  var pixel = imageData.data;
-  for (var p = 0; p<pixel.length; p+=4)
-  {
-    if (map[p/4] == 0) {
-        pixel[p+3] = 0;
+    ctx.drawImage(videoElement, 0, 0, videoElement.width, videoElement.height);
+    var imageData = ctx.getImageData(0,0, videoElement.width, videoElement.height);
+    var pixel = imageData.data;
+    for (var p = 0; p<pixel.length; p+=4){
+      if (map[p/4] == 0) {
+          pixel[p+3] = 0;
+      }
     }
-  }
   
-  // Draw the new image back to canvas
-  ctx.imageSmoothingEnabled = true;
-  ctx.putImageData(imageData, 0, 0);
+    // Draw the new image back to canvas
+    ctx.imageSmoothingEnabled = true;
+    ctx.putImageData(imageData, 0, 0);
   }
-}
-
-function insertObject(){
-  let canvas3 = document.createElement('canvas');
-  let ctx2 = canvas3.getContext('2d');
-  var img = new Image;
-  img.src = '../images/objects/apple.png';
-  // document.appendChild(img);
-  ctx2.drawImage(img,10,10);
 }

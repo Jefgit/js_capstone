@@ -1,38 +1,17 @@
-const fs = require('fs');
-const yaml = require('js-yaml');
-
-const raw = fs.readFileSync('config.yaml');
-const data = yaml.load(raw);
-
-
+const fs           = require('fs');
 const express      = require("express");
 const app          = express();
 const upload       = require('express-fileupload');
-const homeRoutes   = require('./routes/homeRoutes');
-const session      = require("express-session");
-const bodyParser   = require('body-parser');
-const urlencodedParser = bodyParser.urlencoded({extended: false});
-const { check, validationResult} = require('express-validator');
-const { render } = require('ejs');
-
-app.use(session({
-    secret:  data.session.secret,
-    resave: data.session.resave,
-    saveUninitialized: data.session.saveUninitialized,
-    cookie: { maxAge: data.session.maxAge }
-}));
+const { render }   = require('ejs');
 
 app.use(express.static(__dirname + "/assets"));
 
-app.use(bodyParser.urlencoded({extended: true}));
-
-app.use(upload())
+app.use(upload());
 
 app.set('views', __dirname + '/views'); 
 
 app.set('view engine', 'ejs');
 
-// app.use(homeRoutes);
 var files = fs.readdirSync('./assets/images/backgrounds/');
 let message = "";
 let error = "";
@@ -48,7 +27,6 @@ app.get('/', (req, res) =>{
 
 app.post('/', (req, res) => {
     
-
     if(req.files) {
         console.log(req.files);
         var file = req.files.file;
